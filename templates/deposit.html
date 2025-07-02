@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-plus-circle me-2"></i>Make Investment</h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Your Category:</strong> {{ current_user.category }} | 
+                        <strong>Commission Rate:</strong> {{ commission }}%
+                    </div>
+                    
+                    <form method="POST">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Investment Package</label>
+                                <select class="form-select form-select-lg" name="package_amount" required>
+                                    <option value="">Select Package Amount</option>
+                                    {% for package in packages %}
+                                    <option value="{{ package }}">₦{{ "{:,}".format(package) }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Investment Duration</label>
+                                <select class="form-select form-select-lg" name="duration_months" required>
+                                    <option value="">Select Duration</option>
+                                    <option value="1">1 Month</option>
+                                    <option value="3">3 Months</option>
+                                    <option value="6">6 Months</option>
+                                    <option value="12">12 Months</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6>Investment Summary</h6>
+                                        <div id="investment-summary" class="d-none">
+                                            <p class="mb-1"><strong>Package Amount:</strong> <span id="summary-amount"></span></p>
+                                            <p class="mb-1"><strong>Duration:</strong> <span id="summary-duration"></span></p>
+                                            <p class="mb-1"><strong>Monthly ROI:</strong> 10%</p>
+                                            <p class="mb-0"><strong>Total Returns:</strong> <span id="summary-returns" class="text-success fw-bold"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">
+                                    <i class="fas fa-credit-card me-2"></i>Proceed to Payment
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const packageSelect = document.querySelector('select[name="package_amount"]');
+    const durationSelect = document.querySelector('select[name="duration_months"]');
+    const summaryDiv = document.getElementById('investment-summary');
+    
+    function updateSummary() {
+        const amount = parseFloat(packageSelect.value);
+        const duration = parseInt(durationSelect.value);
+        
+        if (amount && duration) {
+            const totalReturns = amount * (1 + (0.10 * duration));
+            
+            document.getElementById('summary-amount').textContent = '₦' + amount.toLocaleString();
+            document.getElementById('summary-duration').textContent = duration + ' month' + (duration > 1 ? 's' : '');
+            document.getElementById('summary-returns').textContent = '₦' + totalReturns.toLocaleString();
+            
+            summaryDiv.classList.remove('d-none');
+        } else {
+            summaryDiv.classList.add('d-none');
+        }
+    }
+    
+    packageSelect.addEventListener('change', updateSummary);
+    durationSelect.addEventListener('change', updateSummary);
+});
+</script>
+{% endblock %}

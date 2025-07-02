@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold">Welcome back, {{ current_user.full_name }}!</h2>
+            <p class="text-muted">Your investment dashboard</p>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Total Balance</h6>
+                            <h3 class="mb-0">₦{{ "{:,.2f}".format(current_user.total_balance) }}</h3>
+                        </div>
+                        <i class="fas fa-wallet fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Total Commission</h6>
+                            <h3 class="mb-0">₦{{ "{:,.2f}".format(current_user.total_commission) }}</h3>
+                        </div>
+                        <i class="fas fa-coins fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Total Referrals</h6>
+                            <h3 class="mb-0">{{ total_referrals }}</h3>
+                        </div>
+                        <i class="fas fa-users fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Category</h6>
+                            <h3 class="mb-0">{{ current_user.category }}</h3>
+                        </div>
+                        <i class="fas fa-star fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Active Investments</h5>
+                </div>
+                <div class="card-body">
+                    {% if active_investments %}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Package</th>
+                                        <th>Duration</th>
+                                        <th>Returns</th>
+                                        <th>End Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for investment in active_investments %}
+                                    <tr>
+                                        <td>₦{{ "{:,.2f}".format(investment.package_amount) }}</td>
+                                        <td>{{ investment.duration_months }} months</td>
+                                        <td>₦{{ "{:,.2f}".format(investment.total_returns) }}</td>
+                                        <td>{{ investment.end_date.strftime('%Y-%m-%d') }}</td>
+                                        <td>
+                                            {% if investment.ready_for_withdrawal %}
+    						<span class="badge bg-success">Ready for Withdrawal</span>
+					    {% else %}
+   						 <span class="badge bg-primary">Active</span>
+					    {% endif %}
+
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-chart-line fa-3x text-muted mb-3"></i>
+                            <h5>No Active Investments</h5>
+                            <p class="text-muted">Start investing to see your portfolio here</p>
+                            <a href="{{ url_for('deposit') }}" class="btn btn-primary">Make Investment</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Referral Code</h5>
+                </div>
+                <div class="card-body text-center">
+                    <div class="bg-light p-3 rounded mb-3">
+                        <h4 class="mb-0 font-monospace">{{ current_user.referral_code }}</h4>
+                    </div>
+                    <button class="btn btn-outline-primary btn-sm" onclick="copyReferralCode()">
+                        <i class="fas fa-copy me-1"></i>Copy Code
+                    </button>
+                    <p class="text-muted mt-2 small">Share this code to earn referral commissions</p>
+                </div>
+            </div>
+            
+            {% if next_withdrawal %}
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="mb-0">Next Withdrawal</h5>
+                </div>
+                <div class="card-body text-center">
+                    <div id="countdown" class="fs-4 fw-bold text-primary mb-2"></div>
+                    <p class="text-muted">Until next withdrawal available</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+function copyReferralCode() {
+    const code = "{{ current_user.referral_code }}";
+    navigator.clipboard.writeText(code).then(() => {
+        alert('Referral code copied to clipboard!');
+    });
+}
+
+{% if next_withdrawal %}
+// Countdown timer
+const countdownDate = new Date("{{ next_withdrawal.isoformat() }}").getTime();
+const countdownElement = document.getElementById("countdown");
+
+const timer = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+    
+    if (distance < 0) {
+        clearInterval(timer);
+        countdownElement.innerHTML = "Available Now!";
+        return;
+    }
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    
+    countdownElement.innerHTML = days + "d " + hours + "h " + minutes + "m";
+}, 1000);
+{% endif %}
+</script>
+{% endblock %}

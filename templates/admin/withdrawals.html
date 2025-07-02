@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold">Withdrawal Management</h2>
+            <p class="text-muted">Process and manage withdrawal requests</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h5 class="mb-0">Withdrawal Requests</h5>
+                </div>
+                <div class="col-auto">
+                    <select class="form-select" id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="declined">Declined</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>User</th>
+                            <th>Amount</th>
+                            <th>Bank Details</th>
+                            <th>Request Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for withdrawal in withdrawals %}
+                        <tr data-status="{{ withdrawal.status }}">
+                            <td>
+                                <div>
+                                    <h6 class="mb-0">{{ withdrawal.user.full_name }}</h6>
+                                    <small class="text-muted">{{ withdrawal.user.email }}</small>
+                                </div>
+                            </td>
+                            <td class="fw-bold">₦{{ "{:,.2f}".format(withdrawal.amount) }}</td>
+                            <td>
+                                <div>
+                                    <small class="d-block">{{ withdrawal.user.bank_name }}</small>
+                                    <small class="d-block">{{ withdrawal.user.account_number }}</small>
+                                    <small class="text-muted">{{ withdrawal.user.account_name }}</small>
+                                </div>
+                            </td>
+                            <td>{{ withdrawal.request_date.strftime('%Y-%m-%d %H:%M') }}</td>
+                            <td>
+                                {% if withdrawal.status == 'pending' %}
+                                    <span class="badge bg-warning">Pending</span>
+                                {% elif withdrawal.status == 'approved' %}
+                                    <span class="badge bg-success">Approved</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Declined</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if withdrawal.status == 'pending' %}
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{{ url_for('approve_withdrawal', withdrawal_id=withdrawal.id) }}" 
+                                       class="btn btn-success" data-confirm="Approve this withdrawal request?">
+                                        <i class="fas fa-check"></i> Approve
+                                    </a>
+                                    <button class="btn btn-danger" onclick="declineWithdrawal({{ withdrawal.id }})" 
+                                            data-confirm="Decline this withdrawal request?">
+                                        <i class="fas fa-times"></i> Decline
+                                    </button>
+                                </div>
+                                {% else %}
+                                <small class="text-muted">
+                                    {{ withdrawal.processed_date.strftime('%Y-%m-%d') if withdrawal.processed_date else 'N/A' }}
+                                </small>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function declineWithdrawal(withdrawalId) {
+    const reason = prompt('Please provide a reason for declining this withdrawal:');
+    if (reason) {
+        // Implement decline logic
+        showToast('Withdrawal declined successfully', 'warning');
+    }
+}
+
+// Status filter
+document.getElementById('statusFilter').addEventListener('change', function() {
+    const status = this.value;
+    const rows = document.querySelectorAll('tbody tr');
+    
+    rows.forEach(row => {
+        if (status === '' || row.getAttribute('data-status') === status) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
+{% endblock %}

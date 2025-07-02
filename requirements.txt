@@ -1,0 +1,12 @@
+celery
+Flask
+Flask_Login
+flask_mail
+Flask_Moment
+flask_sqlalchemy
+flask_wtf
+python-dotenv
+Requests
+Werkzeug
+WTForms
+gunicorn

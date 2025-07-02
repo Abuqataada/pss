@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to PSS</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #2563eb, #1e293b); color: white; padding: 30px; text-align: center; }
+        .content { padding: 30px; background: #f8f9fa; }
+        .footer { padding: 20px; text-align: center; color: #666; }
+        .btn { display: inline-block; padding: 12px 24px; background: #2563eb; color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to PSS!</h1>
+            <p>Private Salary System</p>
+        </div>
+        <div class="content">
+            <h2>Hello {{ user.full_name }},</h2>
+            <p>Welcome to the PSS investment platform! Your account has been successfully created.</p>
+            
+            <h3>Your Account Details:</h3>
+            <ul>
+                <li><strong>Email:</strong> {{ user.email }}</li>
+                <li><strong>Category:</strong> {{ user.category }}</li>
+                <li><strong>Referral Code:</strong> {{ user.referral_code }}</li>
+            </ul>
+            
+            <p>You can now start investing and earning with PSS. Share your referral code with friends and family to earn commission on their investments.</p>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <a href="{{ url_for('dashboard', _external=True) }}" class="btn">Access Your Dashboard</a>
+            </div>
+            
+            <p>If you have any questions, please don't hesitate to contact our support team.</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 PSS - Private Salary System. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

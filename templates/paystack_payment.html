@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-success text-white text-center">
+                    <h4 class="mb-0"><i class="fas fa-credit-card me-2"></i>Complete Payment</h4>
+                </div>
+                <div class="card-body p-4 text-center">
+                    <div class="mb-4">
+                        <h2 class="text-success">₦{{ "{:,.2f}".format(investment.package_amount) }}</h2>
+                        <p class="text-muted">Investment Amount</p>
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <strong>Duration:</strong> {{ investment.duration_months }} months<br>
+                        <strong>Expected Returns:</strong> ₦{{ "{:,.2f}".format(investment.total_returns) }}
+                    </div>
+                    
+                    <button id="paystack-button" class="btn btn-success btn-lg w-100">
+                        <i class="fas fa-lock me-2"></i>Pay with Paystack
+                    </button>
+                    
+                    <p class="text-muted mt-3 small">
+                        <i class="fas fa-shield-alt me-1"></i>
+                        Secured by Paystack
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+document.getElementById('paystack-button').addEventListener('click', function() {
+    const handler = PaystackPop.setup({
+        key: '{{ paystack_public_key }}',
+        email: '{{ current_user.email }}',
+        amount: {{ investment.package_amount * 100 }}, // Amount in kobo
+        currency: 'NGN',
+        ref: 'PSS_' + Math.floor((Math.random() * 1000000000) + 1),
+        callback: function(response) {
+            // Verify payment with the server
+            fetch('/verify_payment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    reference: response.reference
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Payment successful!');
+                    window.location.href = '/dashboard';
+                } else {
+                    alert('Payment verification failed. Please contact support.');
+                }
+            });
+        },
+        onClose: function() {
+            alert('Payment cancelled');
+        }
+    });
+    handler.openIframe();
+});
+</script>
+{% endblock %}

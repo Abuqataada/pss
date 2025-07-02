@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSS App - Terms and Conditions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .terms-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        .section-title {
+            color: #0d6efd;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .navbar {
+            background-color: #0d6efd;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-coins me-2"></i>PSS App
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="terms-container">
+        <h1 class="text-center mb-4">Terms and Conditions</h1>
+        <p class="text-center text-muted mb-5">Effective Date: April 1, 2025</p>
+
+        <div class="accordion" id="termsAccordion">
+            <!-- Section 1: Eligibility -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading1">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                        1. ELIGIBILITY
+                    </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <p>You must be at least 18 years old or the age of majority in your jurisdiction to use the Platform. By using the Platform, you represent and warrant that you meet these requirements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Account Registration -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading2">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                        2. ACCOUNT REGISTRATION
+                    </button>
+                </h2>
+                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>To use our services, you must create an account with accurate, complete, and updated information.</li>
+                            <li>You are responsible for maintaining the confidentiality of your login credentials.</li>
+                            <li>You agree to notify us immediately of any unauthorized use of your account.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Services Provided -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading3">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                        3. SERVICES PROVIDED
+                    </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <p>PSS App offers:</p>
+                        <ul>
+                            <li>Subscription-based investment and earnings programs.</li>
+                            <li>Referral systems that reward users for inviting others.</li>
+                            <li>Access to dashboards showing balances, commissions, income, and withdrawal options.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Subscriptions, Packages, and Payments -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading4">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
+                        4. SUBSCRIPTIONS, PACKAGES, AND PAYMENTS
+                    </button>
+                </h2>
+                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>Users may subscribe to various packages (Bronze, Silver, Gold, Platinum, Diamond, Elite) with different investment thresholds and earning potentials.</li>
+                            <li>Payments are processed through approved channels. All subscriptions are subject to verification and approval.</li>
+                            <li>Income includes:
+                                <ul>
+                                    <li>Monthly passive earnings (10% of your deposit if it meets or exceeds the package minimum).</li>
+                                    <li>Commissions (up to 12.5%) based on active referrals' deposits.</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Referrals and Commissions -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading5">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5">
+                        5. REFERRALS AND COMMISSIONS
+                    </button>
+                </h2>
+                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>Each user receives a unique referral code upon registration.</li>
+                            <li>You earn commissions when users sign up through your referral link and become active.</li>
+                            <li>Commission rates vary by package category as published on the Platform and may change with notice.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6: User Responsibilities -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading6">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6">
+                        6. USER RESPONSIBILITIES
+                    </button>
+                </h2>
+                <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <p>By using our Platform, you agree to:</p>
+                        <ul>
+                            <li>Provide accurate information.</li>
+                            <li>Use the Platform only for lawful purposes.</li>
+                            <li>Refrain from attempting to hack, overload, or reverse-engineer the Platform.</li>
+                            <li>Respect all intellectual property and refrain from copying, modifying, or distributing Platform content.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 7: Withdrawals and Balances -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading7">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7">
+                        7. WITHDRAWALS AND BALANCES
+                    </button>
+                </h2>
+                <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>Withdrawals are processed based on your available withdrawable balance, subject to verification and compliance checks.</li>
+                            <li>We reserve the right to delay or decline withdrawals to investigate suspicious activities or comply with regulatory obligations.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8: Data Privacy -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading8">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8">
+                        8. DATA PRIVACY
+                    </button>
+                </h2>
+                <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>Your privacy is paramount. We collect and process your personal data in accordance with our Privacy Policy.</li>
+                            <li>By using the Platform, you consent to our collection, use, and sharing of data as described.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 9: Limitations of Liability -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading9">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9">
+                        9. LIMITATIONS OF LIABILITY
+                    </button>
+                </h2>
+                <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>The Platform is provided on an "AS IS" and "AS AVAILABLE" basis.</li>
+                            <li>We do not guarantee uninterrupted or error-free operations.</li>
+                            <li>We shall not be liable for any indirect, consequential, or punitive damages arising from your use of the Platform.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 10: Intellectual Property -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading10">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10">
+                        10. INTELLECTUAL PROPERTY
+                    </button>
+                </h2>
+                <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="heading10" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>All content on the Platform, including software, logos, designs, graphics, and text, is owned by us or licensed to us.</li>
+                            <li>You may not reproduce, distribute, or create derivative works without our explicit written permission.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 11: Termination -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading11">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11">
+                        11. TERMINATION
+                    </button>
+                </h2>
+                <div id="collapse11" class="accordion-collapse collapse" aria-labelledby="heading11" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>We may suspend or terminate your account at any time for violations of these Terms or if required by law.</li>
+                            <li>Upon termination, your right to access the Platform ceases immediately.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 12: Amendments -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading12">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse12">
+                        12. AMENDMENTS
+                    </button>
+                </h2>
+                <div id="collapse12" class="accordion-collapse collapse" aria-labelledby="heading12" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <p>We may update these Terms from time to time. Changes will be effective upon posting. It is your responsibility to review the Terms regularly. Continued use after changes constitutes acceptance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 13: Governing Law & Dispute Resolution -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading13">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse13">
+                        13. GOVERNING LAW & DISPUTE RESOLUTION
+                    </button>
+                </h2>
+                <div id="collapse13" class="accordion-collapse collapse" aria-labelledby="heading13" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>These Terms are governed by the laws of Nigeria, without regard to its conflict of law principles.</li>
+                            <li>Any disputes arising will first attempt to be resolved amicably. Failing that, disputes shall be resolved exclusively in the courts of [Your Jurisdiction].</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 14: Disclaimers & Risk Notice -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading14">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse14">
+                        14. DISCLAIMERS & RISK NOTICE
+                    </button>
+                </h2>
+                <div id="collapse14" class="accordion-collapse collapse" aria-labelledby="heading14" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <ol>
+                            <li>Investment Risk: Earnings and commissions depend on actual deposits and referrals. Past performance does not guarantee future results.</li>
+                            <li>You agree that you understand and accept the inherent risks of subscription-based investment systems.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 15: Contact Us -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading15">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse15">
+                        15. CONTACT US
+                    </button>
+                </h2>
+                <div id="collapse15" class="accordion-collapse collapse" aria-labelledby="heading15" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <p>For any questions or concerns, please contact us at:</p>
+                        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:psstech.info@gmail.com">psstech.info@gmail.com</a></p>
+                        <p><i class="fas fa-globe"></i> Website: <a href="https://www.psstech.com.ng">www.psstech.com.ng</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 16: Consent -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading16">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse16">
+                        CONSENT
+                    </button>
+                </h2>
+                <div id="collapse16" class="accordion-collapse collapse" aria-labelledby="heading16" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <p>By using the Platform, you acknowledge that you have read, understood, and agree to be bound by these Terms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 17: Last Updated -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading17">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse17">
+                        ✅ Last updated: July 2, 2025
+                    </button>
+                </h2>
+                <div id="collapse17" class="accordion-collapse collapse" aria-labelledby="heading17" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <p>This document was last updated on July 2, 2025.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 18: Forward-looking Additions -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading18">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse18">
+                        🔍 FORWARD-LOOKING ADDITIONS
+                    </button>
+                </h2>
+                <div id="collapse18" class="accordion-collapse collapse" aria-labelledby="heading18" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <p>Because we believe in continuous improvement, we reserve the right to introduce:</p>
+                        <ul>
+                            <li>AI-driven fraud monitoring to protect your funds.</li>
+                            <li>Dynamic commission models that reward long-term active participation.</li>
+                            <li>Personalized dashboards using predictive analytics to help you maximize your earnings.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 19: Signature of Acceptance -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading19">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse19">
+                        ✅ Signature of Acceptance
+                    </button>
+                </h2>
+                <div id="collapse19" class="accordion-collapse collapse" aria-labelledby="heading19" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <p>Upon registration or continued use, you electronically sign these Terms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 20: Future-proof Clause -->
+            <div class="accordion-item mb-3">
+                <h2 class="accordion-header" id="heading20">
+                    <button class="accordion-button collapsed section-title" type="button" data-bs-toggle="collapse" data-bs-target="#collapse20">
+                        🎯 Future-proof clause
+                    </button>
+                </h2>
+                <div id="collapse20" class="accordion-collapse collapse" aria-labelledby="heading20" data-bs-parent="#termsAccordion">
+                    <div class="accordion-body">
+                        <p>Our ecosystem will integrate blockchain ledgering for immutable transaction transparency and smart contracts for automated payouts — ensuring fairness, speed, and auditability.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <p>By using the Platform, you acknowledge that you have read, understood, and agree to be bound by these Terms.</p>
+        </div>
+    </div>
+
+    <footer class="text-center text-muted py-3">
+        <p>© <span id="current-year"></span> PSS App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Get the current year and update the footer
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentYear = new Date().getFullYear();
+            document.getElementById('current-year').textContent = currentYear;
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

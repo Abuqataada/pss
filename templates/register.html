@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3 class="mb-0"><i class="fas fa-user-plus me-2"></i>Create Your PSS Account</h3>
+                </div>
+                <div class="card-body p-5">
+                    <form method="POST">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" name="full_name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" name="phone" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Bank Name</label>
+                                <input type="text" class="form-control" name="bank_name" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Account Number</label>
+                                <input type="text" class="form-control" name="account_number" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Account Name</label>
+                                <input type="text" class="form-control" name="account_name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Investment Category</label>
+                                <select class="form-select" name="category" required>
+                                    <option value="">Select Category</option>
+                                    {% for category in categories %}
+                                    <option value="{{ category }}">{{ category }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Referral Code (Optional)</label>
+                                <input type="text" class="form-control" name="referral_code" placeholder="Enter referral code">
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" required id="termsCheck">
+                                    <label class="form-check-label" for="termsCheck">
+                                        I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-primary">Terms and Conditions</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-lg w-100">
+                                    <i class="fas fa-user-plus me-2"></i>Create Account
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text-center mt-4">
+                        <p>Already have an account? <a href="{{ url_for('login') }}" class="text-primary">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Terms and Conditions Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>🚀 Quick Summary of Our Terms</h5>
+                    <p>We know legal documents can be long. Here's a simple breakdown of how things work on PSS App.</p>
+                    
+                    <hr>
+                    
+                    <h5>🧑‍💼 Your Account</h5>
+                    <p>You must be at least 18 years old to use PSS App.<br>
+                    Keep your login details private. If someone else uses your account, that's on you.</p>
+                    
+                    <hr>
+                    
+                    <h5>💰 How You Earn</h5>
+                    <p>Subscribe to a package (Bronze, Silver, Gold, Platinum, Diamond, Elite) to start earning.<br>
+                    You'll get monthly passive earnings (10% of your qualifying deposit).<br>
+                    Share your unique referral link — when people join through you and are active, you earn commissions (up to 12.5%).</p>
+                    
+                    <hr>
+                    
+                    <h5>🏦 Withdrawals</h5>
+                    <p>You can withdraw your available balance anytime, subject to checks for security and compliance.<br>
+                    We might delay or investigate if something looks suspicious.</p>
+                    
+                    <hr>
+                    
+                    <h5>🔍 Privacy & Data</h5>
+                    <p>We respect your privacy. We use your data to run the platform and improve your experience.<br>
+                    Check our Privacy Policy for all the details.</p>
+                    
+                    <hr>
+                    
+                    <h5>⚖️ Legal Stuff</h5>
+                    <p>Using PSS App means you accept that investing carries risk — past results don't guarantee future performance.<br>
+                    Everything is provided "as is" — we can't promise the platform will be 100% perfect all the time.<br>
+                    If there's ever a dispute, it'll be handled under the laws of your country/state.</p>
+                    
+                    <hr>
+                    
+                    <h5>🚀 Future Benefits</h5>
+                    <p>We're building smarter fraud protection, AI analytics to boost your earnings, and may integrate blockchain for transparent payouts.</p>
+                    
+                    <hr>
+                    
+                    <h5>📝 Need the full details?</h5>
+                    <p>Read our complete <a href="{{ url_for('tc') }}" class="text-primary">Terms and Conditions</a> for all the official legal points.</p>
+                    
+                    <hr>
+                    
+                    <p class="text-center">✅ By signing up or continuing to use PSS App, you agree to these rules.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

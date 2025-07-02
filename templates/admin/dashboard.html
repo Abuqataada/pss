@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold">Admin Dashboard</h2>
+            <p class="text-muted">Platform overview and management</p>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Total Users</h6>
+                            <h3 class="mb-0">{{ total_users }}</h3>
+                        </div>
+                        <i class="fas fa-users fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Total Investments</h6>
+                            <h3 class="mb-0">{{ total_investments }}</h3>
+                        </div>
+                        <i class="fas fa-chart-line fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Pending Withdrawals</h6>
+                            <h3 class="mb-0">{{ pending_withdrawals }}</h3>
+                        </div>
+                        <i class="fas fa-clock fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h6 class="card-title">Commission Paid</h6>
+                            <h3 class="mb-0">₦{{ "{:,.2f}".format(total_commission_paid) }}</h3>
+                        </div>
+                        <i class="fas fa-coins fa-2x opacity-75"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('admin_users') }}" class="btn btn-outline-primary">
+                            <i class="fas fa-users me-2"></i>Manage Users
+                        </a>
+                        <a href="{{ url_for('admin_withdrawals') }}" class="btn btn-outline-warning">
+                            <i class="fas fa-money-bill-wave me-2"></i>Process Withdrawals
+                        </a>
+                        <button class="btn btn-outline-info" onclick="generateReport()">
+                            <i class="fas fa-chart-bar me-2"></i>Generate Report
+                        </button>
+                        <button class="btn btn-outline-secondary" onclick="sendBulkEmail()">
+                            <i class="fas fa-envelope me-2"></i>Send Bulk Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Recent Activity</h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        {% for activity in activities %}
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">{{ activity.type }}</h6>
+                                <p class="mb-1 text-muted small">{{ activity.description }}</p>
+                            </div>
+                            <small class="text-muted">{{ timeago(activity.timestamp) }}</small>
+                        </div>
+                        {% else %}
+                        <div class="list-group-item text-center">
+                            <p class="text-muted">No recent activities</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function generateReport() {
+    showToast('Feature under development...', 'info');
+    // Add report generation logic here
+}
+
+function sendBulkEmail() {
+    showToast('Feature under development...', 'info');
+    // Add bulk email logic here
+}
+</script>
+{% endblock %}

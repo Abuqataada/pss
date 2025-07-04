@@ -10,3 +10,7 @@ Requests
 Werkzeug
 WTForms
 gunicorn
+psycopg2-binary
+SQLAlchemy
+python-dotenv
+gunicorn

@@ -670,6 +670,11 @@ def timeago(timestamp):
 # Adding the filter to Jinja
 app.jinja_env.filters['timeago'] = timeago
 
+
+with app.app_context():
+        db.create_all()
+
+        
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()

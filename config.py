@@ -15,4 +15,9 @@ class Config:
     PAYSTACK_SECRET_KEY = os.environ.get('PAYSTACK_SECRET_KEY') or 'sk_test_d7311cf7d33bae105a57562e4b91fc2fd47bbb16'
     PAYSTACK_PUBLIC_KEY = os.environ.get('PAYSTACK_PUBLIC_KEY') or 'pk_test_84736b65c9f6d66b177f67109006c5d932d81554'
     MAIL_DEFAULT_SENDER = ('PSS Support', 'psstech.info@gmail.com')
+    SQLALCHEMY_ENGINE_OPTIONS = {
+    'pool_pre_ping': True,
+    'pool_size': 5,
+    'max_overflow': 10
+    }
 

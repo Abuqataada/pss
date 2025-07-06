@@ -652,6 +652,11 @@ def approve_withdrawal(withdrawal_id):
 
 
 
+
+@app.route('/health')
+def health():
+    return "OK", 200
+
 ## Utility/helper functions
 def timeago(timestamp):
     now = datetime.now(timezone.utc)
